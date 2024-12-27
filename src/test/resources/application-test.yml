@@ -1,0 +1,24 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:mysql:8.0.35://localhost/batch
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: true
+      maximum-pool-size: 10
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  batch:
+    jdbc:
+      initialize-schema: always
+  sql:
+    init:
+      mode: always

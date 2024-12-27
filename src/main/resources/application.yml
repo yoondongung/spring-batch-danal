@@ -1,0 +1,28 @@
+spring:
+  application:
+    name : spring-batch
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/danal_batch?characterEncoding=UTF-8&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: danal_batch
+    password: danal_batch
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: true
+      maximum-pool-size: 10
+
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: true
+      name: ${job.name:NONE}
+
+  jpa:
+    show-sql: true
+    hibernate:
+        ddl-auto: none;
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect

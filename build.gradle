@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.1'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.palantir.docker-compose' version '0.36.0'
+}
+
+group = 'com.danal'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.batch:spring-batch-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'mysql:mysql-connector-java:8.0.32'
+
+	testImplementation 'com.h2database:h2'
+
+	implementation 'org.testcontainers:testcontainers-bom:1.20.2'
+	testImplementation 'org.testcontainers:mysql'
+	testImplementation "org.testcontainers:junit-jupiter"
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+dockerCompose {
+	dockerComposeFile 'docker-compose-local.yml'
+}
