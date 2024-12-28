@@ -14,6 +14,7 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.support.SynchronizedItemStreamReader;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
@@ -26,7 +27,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class RestaurantDataSyncJob {
 
     private final String jobName = "restaurantDataJob";
-    private static final int chunkSize = 2000;
+    @Value("${custom.batch.chunk-size}")
+    private int chunkSize;
 
     @Bean
     public Job restaurantDataInfoJob(JobRepository jobRepository, Step step) {

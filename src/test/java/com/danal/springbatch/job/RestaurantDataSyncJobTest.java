@@ -29,6 +29,16 @@ public class RestaurantDataSyncJobTest {
 
     @Test
     public void restaurantDataInfoExecutionJobTest() throws Exception {
+        JobParameters jobParameters = buildEmptyJobParameters();
+
+        JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
+
+        assertThat(jobExecution.getStatus()).isEqualTo(BatchStatus.COMPLETED);
+        assertThat(jobExecution.getExitStatus().getExitCode()).isEqualTo("COMPLETED");
+    }
+
+    @Test
+    public void restaurantDataInfoExecutionJobParametersTest() throws Exception {
         JobParameters jobParameters = buildJobParameters();
 
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
@@ -37,8 +47,15 @@ public class RestaurantDataSyncJobTest {
         assertThat(jobExecution.getExitStatus().getExitCode()).isEqualTo("COMPLETED");
     }
 
+
+    private JobParameters buildEmptyJobParameters() {
+        return new JobParametersBuilder()
+                .toJobParameters();
+    }
+
     private JobParameters buildJobParameters() {
         return new JobParametersBuilder()
+                .addString("filePath", "src/test/resources/fulldata.csv")
                 .toJobParameters();
     }
 }

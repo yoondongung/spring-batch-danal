@@ -28,7 +28,7 @@ public class RestaurantItemStreamReaderTest {
 
     @BeforeEach
     void setUp() {
-        flatFileItemReader = spy(reader.createDelegateReader());
+        flatFileItemReader = spy(reader.createDelegateReader(null));
     }
 
 

@@ -13,12 +13,16 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     database-platform: org.hibernate.dialect.MySQLDialect
 
   batch:
-    jdbc:
-      initialize-schema: always
+#    jdbc:
+#      initialize-schema: always
   sql:
     init:
       mode: always
+
+custom:
+  batch:
+    chunk-size: 10

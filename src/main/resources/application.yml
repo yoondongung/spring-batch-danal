@@ -13,8 +13,6 @@ spring:
       maximum-pool-size: 10
 
   batch:
-    jdbc:
-      initialize-schema: always
     job:
       enabled: true
       name: ${job.name:NONE}
@@ -22,7 +20,11 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-        ddl-auto: none;
+        ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+
+custom:
+  batch:
+    chunk-size: 2000
