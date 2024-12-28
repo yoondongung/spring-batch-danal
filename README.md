@@ -22,4 +22,4 @@ JOB_PARAMETERS filePath 를 설정하지 않으면 resources/fulldata.csv 파일
 - gradle test 또는 개별 테스트 수행(개별부분만 확인 가능)
 
 ### 테스트 데이터 위치
-- src/java/
+- src/test/resources/fulldata.csv
