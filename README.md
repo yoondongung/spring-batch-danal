@@ -7,9 +7,9 @@
   - schema.sql 파일 참고
 
 ### 프로그램 실행
-JOB_NAME = restaurantDataJob,
-JOB_PARAMETERS = filePath
-JOB_PARAMETERS filePath 를 설정하지 않으면 resources/fulldata.csv 파일을 읽어 처리합니다.
+- JOB_NAME = restaurantDataJob,
+- JOB_PARAMETERS = filePath(파일경로)
+- JOB_PARAMETERS filePath 를 설정하지 않으면 resources/fulldata.csv 파일을 읽어 처리합니다.
 - java -jar spring-batch-0.0.1-SNAPSHOT-plain.jar --job.name=restaurantDataJob filePath=/data/fulldata.csv
 
 - 또는 인텔리제이에서 program arguments에  --job.name=restaurantDataJob filePath={파일경로}} 추가 후 실행
